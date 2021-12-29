@@ -1,6 +1,8 @@
 import React, {useRef} from 'react'
 import Style from "./LoginPage.module.scss"
 
+import { EnteredData, isUserValid } from '../../auth/userAuth'
+
 import UserLogo from './../../assets/images/Benutzer.svg'
 import PasswordLogo from './../../assets/images/Passwortschloss.svg'
 
@@ -16,9 +18,14 @@ const LoginPage: React.FC<LoginPageProps> = ({setAppState}) => {
     const passwordInputContainerRef = useRef<HTMLDivElement>(null)
 
     const handleLoginRequest = () => {
-        isInputEmpty()
-        if(usernameInputRef.current!.value === 'admin'){
-            setAppState('AppPage')
+        try {
+            isInputEmpty()
+            const enteredData = getInputData()
+            if(isUserValid(enteredData)) {
+                setAppState('AppPage')
+            }
+        } catch (error) {
+            throw error
         }
     }
     const isInputEmpty = () => {
@@ -32,13 +39,22 @@ const LoginPage: React.FC<LoginPageProps> = ({setAppState}) => {
         }
         if(passwordInputRef.current!.value.trim() === ""){
             passwordInputContainerRef.current!.style.border = '2px solid red'
-            const error = new Error('Username field is empty')
+            const error = new Error('Password field is empty')
             throw error
         }
         if(passwordInputRef.current!.value.trim() !== ""){
             passwordInputContainerRef.current!.style.border = '1px solid black'
         }
         return true
+    }
+    const getInputData = ():EnteredData => {
+        const username = usernameInputRef.current!.value
+        const password = passwordInputRef.current!.value
+
+        return {
+            enteredUsername: username,
+            enteredPassword: password
+        }
     }
 
     return (
