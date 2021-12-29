@@ -6,11 +6,18 @@ import Calender from '../../components/Calender'
 import ToDoList from '../../components/ToDoList'
 import Footer from '../../components/Footer'
 
-const AppPage: React.FC = () => {
+interface AppPageProps {
+    setAppState: (value: string | ((prevVar: string) => string)) => void;
+}
+
+const AppPage: React.FC<AppPageProps> = ({setAppState}) => {
+
+    
+
     return (
         <div className={Style.container}>
             <div className={Style.header}>
-                <Header />
+                <Header setAppState={setAppState}/>
             </div>
             <div className={Style.body}>
                 <div className={Style.calender}>

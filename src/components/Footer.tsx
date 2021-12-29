@@ -4,7 +4,7 @@ import Style from './Footer.module.scss'
 const Footer: React.FC = () => {
     return (
         <div className={Style.container}>
-            Footer
+            (c)2022 Rizwan Mushtaq Dhudhaal
         </div>
     )
 }

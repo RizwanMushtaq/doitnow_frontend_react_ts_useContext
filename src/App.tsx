@@ -3,6 +3,7 @@ import './App.css';
 
 import LoginPage from './pages/login/LoginPage'
 import AppPage from './pages/app/AppPage';
+import RegistrationPage from './pages/registration/RegistrationPage';
 
 const App: React.FC = () => {
   
@@ -12,7 +13,9 @@ const App: React.FC = () => {
   if(appState === 'LoginPage'){
     RenderComponent = <LoginPage setAppState={setAppState}/>
   }else if(appState === 'AppPage'){
-    RenderComponent = <AppPage />
+    RenderComponent = <AppPage setAppState={setAppState}/>
+  }else if(appState === 'RegistrationPage'){
+    RenderComponent = <RegistrationPage setAppState={setAppState}/>
   }
 
   return (

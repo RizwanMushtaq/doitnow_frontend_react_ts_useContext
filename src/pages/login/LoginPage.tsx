@@ -57,6 +57,10 @@ const LoginPage: React.FC<LoginPageProps> = ({setAppState}) => {
         }
     }
 
+    const handleRegisterRequest = () => {
+        setAppState('RegistrationPage')
+    }
+
     return (
         <div className={Style.container}>
             <div className={Style.titleContainer}>
@@ -79,7 +83,8 @@ const LoginPage: React.FC<LoginPageProps> = ({setAppState}) => {
                     <p className={Style.forgotPasswordLabel} >Forgot password?</p>
                 </div>
                 <div className={Style.buttonContainer}>
-                    <button onClick={handleLoginRequest}>Login</button>
+                    <button className={Style.loginButton} onClick={handleLoginRequest}>Login</button>
+                    <button className={Style.registerButton} onClick={handleRegisterRequest}>Join Now</button>
                 </div>
             </div>
         </div>
