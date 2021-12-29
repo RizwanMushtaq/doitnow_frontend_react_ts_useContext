@@ -59,6 +59,9 @@ const LoginPage: React.FC<LoginPageProps> = ({setAppState}) => {
 
     return (
         <div className={Style.container}>
+            <div className={Style.titleContainer}>
+                <h1>Do It Now App</h1>
+            </div>
             <div className={Style.formContainer}>
                 <div className={Style.InputContainer}>
                     <div className={Style.InputContainerInner} ref={usernameInputContainerRef}>
