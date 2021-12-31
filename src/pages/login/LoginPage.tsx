@@ -1,5 +1,6 @@
 import React, {useRef} from 'react'
 import Style from "./LoginPage.module.scss"
+import { logWithDebug } from '../../utils/logHandling'
 
 import { EnteredData, isUserValid } from '../../auth/userAuth'
 
@@ -11,6 +12,8 @@ interface LoginPageProps {
 }
 
 const LoginPage: React.FC<LoginPageProps> = ({setAppState}) => {
+
+    logWithDebug('In LoginPage Component')
 
     const usernameInputRef = useRef<HTMLInputElement>(null)
     const usernameInputContainerRef = useRef<HTMLDivElement>(null)

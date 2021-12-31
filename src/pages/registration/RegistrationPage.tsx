@@ -1,12 +1,12 @@
 import React, {useRef} from 'react'
 import Style from './RegistrationPage.module.scss'
+import { logWithDebug } from '../../utils/logHandling'
 import {apiEndPoints} from '../../config/apiEndPoints'
 import axios from 'axios'
 
 import UserLogo from './../../assets/images/Benutzer.svg'
 import PasswordLogo from './../../assets/images/Passwortschloss.svg'
 import MailLogo from './../../assets/images/Mail.svg'
-
 
 interface RegistrationPageProps {
     setAppState: (value: string | ((prevVar: string) => string)) => void;
@@ -18,6 +18,8 @@ interface RegistrationFormEnteredData {
 }
 
 const RegistrationPage: React.FC<RegistrationPageProps> = ({setAppState}) => {
+
+    logWithDebug('In RegistrationPage Component')
 
     const usernameInputRef = useRef<HTMLInputElement>(null)
     const usernameInputContainerRef = useRef<HTMLDivElement>(null)
@@ -32,6 +34,7 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({setAppState}) => {
             isInputEmpty()
             const enteredData = getInputData()
             doUserRegistration(enteredData)
+            //Add spining wheel here
         } catch (error) {
             throw error
         }
