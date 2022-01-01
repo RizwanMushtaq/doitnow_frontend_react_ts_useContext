@@ -1,16 +1,17 @@
-export interface EnteredData {
+import {apiEndPoints} from '../config/apiEndPoints'
+import axios from 'axios'
+
+export interface EnteredDataLoginPage {
     enteredUsername: string,
     enteredPassword: string
 }
-export const isUserValid = (enteredData: EnteredData):boolean => {
-    
-    if(enteredData.enteredUsername !== 'admin'){
-      const error = new Error('Incorrect username')
-      throw error
-    } else if(enteredData.enteredPassword !== 'admin'){
-      const error = new Error('Incorrect password')
-      throw error
-    }
 
-    return true
+export const verifyUser = async (enteredData: EnteredDataLoginPage) => {
+  return axios.post(
+      apiEndPoints.userLogin,
+      {
+          "username":enteredData.enteredUsername,
+          "password":enteredData.enteredPassword
+      }
+  )
 }

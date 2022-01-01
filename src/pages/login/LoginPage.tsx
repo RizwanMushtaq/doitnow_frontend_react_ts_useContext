@@ -2,7 +2,7 @@ import React, {useRef} from 'react'
 import Style from "./LoginPage.module.scss"
 import { logWithDebug } from '../../utils/logHandling'
 
-import { EnteredData, isUserValid } from '../../auth/userAuth'
+import { EnteredDataLoginPage, verifyUser } from '../../auth/userAuth'
 
 import UserLogo from './../../assets/images/Benutzer.svg'
 import PasswordLogo from './../../assets/images/Passwortschloss.svg'
@@ -20,16 +20,16 @@ const LoginPage: React.FC<LoginPageProps> = ({setAppState}) => {
     const passwordInputRef = useRef<HTMLInputElement>(null)
     const passwordInputContainerRef = useRef<HTMLDivElement>(null)
 
+    //handle Login Request
     const handleLoginRequest = () => {
-        try {
             isInputEmpty()
             const enteredData = getInputData()
-            if(isUserValid(enteredData)) {
-                setAppState('AppPage')
-            }
-        } catch (error) {
-            throw error
-        }
+            verifyUser(enteredData).then( response => {
+                console.trace(response)
+                handleSuccessfulLogin(response)
+            }).catch( error => {
+                handleFailedLogin(error)
+            })
     }
     const isInputEmpty = () => {
         if(usernameInputRef.current!.value.trim() === ""){
@@ -50,7 +50,7 @@ const LoginPage: React.FC<LoginPageProps> = ({setAppState}) => {
         }
         return true
     }
-    const getInputData = ():EnteredData => {
+    const getInputData = ():EnteredDataLoginPage => {
         const username = usernameInputRef.current!.value
         const password = passwordInputRef.current!.value
 
@@ -59,7 +59,30 @@ const LoginPage: React.FC<LoginPageProps> = ({setAppState}) => {
             enteredPassword: password
         }
     }
+    const handleSuccessfulLogin = (response: any) => {
+        const bearerToken = 'Bearer ' + response.data.accessToken
+        localStorage.setItem("BearerToken", bearerToken)
+        localStorage.setItem("userName", response.data.userName)
+        localStorage.setItem("userID", response.data.userID)
+        localStorage.setItem("userEMail", response.data.userEMail)
+        setAppState('AppPage')
+    }
+    const handleFailedLogin = (error: any) => {
+        if(error.response) {
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+            alert('Incorrect username or password')
+            throw error
+        } else if(error.request) {
+            console.log(error.request)
+            throw error
+        } else {
+            console.log('Error', error.message)
+        }
+    }
 
+    //handle Request for Registration Page
     const handleRegisterRequest = () => {
         setAppState('RegistrationPage')
     }
