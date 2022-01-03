@@ -13,7 +13,6 @@ interface AppPageProps {
 const AppPage: React.FC<AppPageProps> = ({setAppState}) => {
 
     
-
     return (
         <div className={Style.container}>
             <div className={Style.header}>

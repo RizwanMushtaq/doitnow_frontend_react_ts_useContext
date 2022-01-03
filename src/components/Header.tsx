@@ -7,13 +7,15 @@ interface HeaderProps {
 
 const Header:React.FC<HeaderProps> = ({setAppState}) => {
 
+    const username = localStorage.getItem('userName')
+
     const logoutHandler = () => {
         setAppState('LoginPage')
     }
 
     return (
         <div className={Style.container}>
-            <div className={Style.welcomeDiv}>Welcome</div>
+            <div className={Style.welcomeDiv}>Welcome {username}</div>
             <div className={Style.logoutDiv}> 
                 <button onClick={logoutHandler}>Logout</button>
             </div>

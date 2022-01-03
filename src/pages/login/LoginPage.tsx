@@ -20,7 +20,7 @@ const LoginPage: React.FC<LoginPageProps> = ({setAppState}) => {
     const passwordInputRef = useRef<HTMLInputElement>(null)
     const passwordInputContainerRef = useRef<HTMLDivElement>(null)
 
-    //handle Login Request
+    
     const handleLoginRequest = () => {
             isInputEmpty()
             const enteredData = getInputData()
@@ -82,7 +82,7 @@ const LoginPage: React.FC<LoginPageProps> = ({setAppState}) => {
         }
     }
 
-    //handle Request for Registration Page
+    
     const handleRegisterRequest = () => {
         setAppState('RegistrationPage')
     }
