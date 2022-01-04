@@ -66,7 +66,6 @@ const Calender: React.FC = () => {
 
             setSelectedDate(new Date(selectedYear, selectedMonth, selectedDay))
         }
-        
     }
     const handlePreviousMonth = ()=>{
         logWithDebug('In handlePreviousMonth')
@@ -161,35 +160,29 @@ const Calender: React.FC = () => {
     )
 
     useEffect( () => {
-
-        let bearerToken = localStorage.getItem('BearerToken' || '{}')
+        let bearerToken = localStorage.getItem('BearerToken' || '')
         let userID = localStorage.getItem('userID')
-        const config = {
-            headers: { 
-                'Authorization': bearerToken
-            }
-        };
-        console.log(bearerToken)
-        console.log(userID)
+        if(bearerToken){
+            const config = {
+                headers: { 
+                    'Authorization': bearerToken
+                }
+            };
 
-        // axios.post(
-        //     apiEndPoints.getAllTodosForUser,
-        //     {
-        //         "userID": userID
-        //     },
-        //     {
-        //         headers: { 
-        //             'Content-Type': 'application/json',
-        //             'Authorization': bearerToken
-        //         }
-        //     };
-        // )
-        // .then( (res) => {
-        //     console.log(res)
-        // })
-        // .catch( (err) => {
-        //     console.log(err)
-        // })
+            axios.post(
+                apiEndPoints.getAllTodosForUser,
+                {
+                    "userID": userID
+                },
+                config
+            )
+            .then( (res) => {
+                console.log(res)
+            })
+            .catch( (err) => {
+                throw err
+            })
+        }
     })
 
     return (
