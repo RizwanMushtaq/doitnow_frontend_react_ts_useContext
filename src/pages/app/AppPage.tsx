@@ -15,7 +15,6 @@ const AppPage: React.FC<AppPageProps> = ({setAppState}) => {
 
     let [selectedDate, setSelectedDate] = useState(new Date())
     let [updateToDoList, setUpdateToDoList] = useState(false)
-    let [updateCalender, setUpdateCalender] = useState(false)
     let [showAddToDoItemDialog, setShowAddToDoItemDialog] = useState(false)
 
     return (
@@ -29,7 +28,6 @@ const AppPage: React.FC<AppPageProps> = ({setAppState}) => {
                         selectedDate={selectedDate} 
                         setSelectedDate={setSelectedDate}
                         setUpdateToDoList={setUpdateToDoList}
-                        updateCalender={updateCalender}
                     />
                 </div>
                 <div className={Style.todoList}>

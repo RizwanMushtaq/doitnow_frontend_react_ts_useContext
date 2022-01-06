@@ -11,14 +11,13 @@ interface CalenderProps {
     selectedDate: Date
     setSelectedDate: Function
     setUpdateToDoList: Function
-    updateCalender: boolean
 }
 
-const Calender: React.FC<CalenderProps> = ({selectedDate, setSelectedDate, setUpdateToDoList, updateCalender}) => {
+const Calender: React.FC<CalenderProps> = ({selectedDate, setSelectedDate, setUpdateToDoList}) => {
 
     let [calenderDate, setCalenderDate] = useState(new Date())
     let data = takeMonth(calenderDate)()
-
+    let [updateCalender, setUpdateCalender] = useState(false)
     let [dateListWithTodos, setDateListWithTodos] = useState<Date[]>([])
     let todayDate = new Date()
 
@@ -76,10 +75,12 @@ const Calender: React.FC<CalenderProps> = ({selectedDate, setSelectedDate, setUp
     const handlePreviousMonth = ()=>{
         logWithDebug('In handlePreviousMonth')
         setCalenderDate(subMonths(calenderDate, 1))
+        setUpdateCalender((previous) => !previous)
     }
     const handleNextMonth = ()=>{
         logWithDebug('In handleNextMonth function')
         setCalenderDate(addMonths(calenderDate, 1))
+        setUpdateCalender((previous) => !previous)
     }
 
     const showDataAsHTML = data.map( (week) => 
