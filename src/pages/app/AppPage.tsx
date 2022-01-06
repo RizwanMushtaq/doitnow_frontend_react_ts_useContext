@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Style from './AppPage.module.scss'
 
 import Header from '../../components/Header'
@@ -12,7 +12,9 @@ interface AppPageProps {
 
 const AppPage: React.FC<AppPageProps> = ({setAppState}) => {
 
-    
+    let [selectedDate, setSelectedDate] = useState(new Date())
+    let [updateToDoList, setUpdateToDoList] = useState(false)
+
     return (
         <div className={Style.container}>
             <div className={Style.header}>
@@ -20,10 +22,17 @@ const AppPage: React.FC<AppPageProps> = ({setAppState}) => {
             </div>
             <div className={Style.body}>
                 <div className={Style.calender}>
-                    <Calender />
+                    <Calender 
+                        selectedDate={selectedDate} 
+                        setSelectedDate={setSelectedDate}
+                        setUpdateToDoList={setUpdateToDoList}
+                    />
                 </div>
                 <div className={Style.todoList}>
-                    <ToDoList />
+                    <ToDoList 
+                        selectedDate={selectedDate}
+                        updateToDoList={updateToDoList}
+                    />
                 </div>
             </div>
             <div className={Style.footer}>

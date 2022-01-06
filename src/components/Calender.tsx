@@ -7,12 +7,17 @@ import { format, isSameMonth, isSameDay, subMonths, addMonths } from 'date-fns'
 import { takeMonth } from '../helpers/calenderLogic'
 import arrowiconlogo from '../assets/images/Pfeilrechts.svg'
 
-const Calender: React.FC = () => {
+interface CalenderProps {
+    selectedDate: Date
+    setSelectedDate: Function
+    setUpdateToDoList: Function
+}
+
+const Calender: React.FC<CalenderProps> = ({selectedDate, setSelectedDate, setUpdateToDoList}) => {
 
     let [calenderDate, setCalenderDate] = useState(new Date())
     let data = takeMonth(calenderDate)()
 
-    let [selectedDate, setSelectedDate] = useState(new Date())
     let [dateListWithTodos, setDateListWithTodos] = useState([])
     let todayDate = new Date()
 
