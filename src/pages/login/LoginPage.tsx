@@ -25,7 +25,7 @@ const LoginPage: React.FC<LoginPageProps> = ({setAppState}) => {
             isInputEmpty()
             const enteredData = getInputData()
             verifyUser(enteredData).then( response => {
-                console.trace(response)
+                logWithDebug(response)
                 handleSuccessfulLogin(response)
             }).catch( error => {
                 handleFailedLogin(error)
@@ -69,16 +69,16 @@ const LoginPage: React.FC<LoginPageProps> = ({setAppState}) => {
     }
     const handleFailedLogin = (error: any) => {
         if(error.response) {
-            console.log(error.response.data);
-            console.log(error.response.status);
-            console.log(error.response.headers);
+            logWithDebug(error.response.data);
+            logWithDebug(error.response.status);
+            logWithDebug(error.response.headers);
             alert('Incorrect username or password')
             throw error
         } else if(error.request) {
-            console.log(error.request)
+            logWithDebug(error.request)
             throw error
         } else {
-            console.log('Error', error.message)
+            throw error
         }
     }
 

@@ -28,7 +28,6 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({setAppState}) => {
     const passwordInputRef = useRef<HTMLInputElement>(null)
     const passwordInputContainerRef = useRef<HTMLDivElement>(null)
 
-    //handleRegistrationRequest
     const handleRegistrationRequest = () => {
         try {
             isInputEmpty()
@@ -82,6 +81,9 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({setAppState}) => {
             if(response.status === 200){
                 if (response.data.result === 'success'){
                     alert('User Registration Successful')
+                    usernameInputRef.current!.value = ''
+                    emailInputRef.current!.value = ''
+                    passwordInputRef.current!.value = ''
                 } else if (response.data.result === 'duplicate'){
                     alert('User Name Not Available')
                 }
@@ -101,7 +103,6 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({setAppState}) => {
         )
     }
 
-    //handleBackToLoginRequest
     const handleBackToLoginRequest = () => {
         setAppState('LoginPage')
     }

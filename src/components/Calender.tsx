@@ -22,7 +22,7 @@ const Calender: React.FC<CalenderProps> = ({selectedDate, setSelectedDate, setUp
     let todayDate = new Date()
 
     const handleDaysDivClickevent = (event: React.MouseEvent<HTMLDivElement>) => {
-        console.log('handleDaysDivClickevent')
+        logWithDebug('handleDaysDivClickevent')
         if(event.target as Element){
             let selectedDay = +((event.target as Element).firstChild!.textContent!)
 
@@ -182,7 +182,7 @@ const Calender: React.FC<CalenderProps> = ({selectedDate, setSelectedDate, setUp
                 config
             )
             .then( (res) => {
-                console.log(res)
+                logWithDebug(res)
             })
             .catch( (err) => {
                 throw err
