@@ -3,7 +3,7 @@ DoItNow App:
 Tech Stack:
 * TypeScript
 * Reac.js
-* State managementby React Hooks
+* State management by React Hooks
 * React Hooks(useSatate, useEffect, useRef)
 * Axios
 * User Authorization using JSON web tokens
