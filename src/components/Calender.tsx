@@ -195,6 +195,7 @@ const Calender: React.FC<CalenderProps> = ({selectedDate, setSelectedDate, setUp
                     return null
                 })
                 let unique = datesArray.filter(onlyUnique)
+                setDateListWithTodos(dateList => [])
                 for(let i = 0; i < unique.length; i++){
                     let dateArray = unique[i].split('.')
                     let date = new Date(dateArray[2], dateArray[1]-1, dateArray[0])
