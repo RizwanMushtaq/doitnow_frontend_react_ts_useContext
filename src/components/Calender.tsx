@@ -17,7 +17,7 @@ const Calender: React.FC<CalenderProps> = ({selectedDate, setSelectedDate, setUp
 
     let [calenderDate, setCalenderDate] = useState(new Date())
     let data = takeMonth(calenderDate)()
-    let [updateCalender, setUpdateCalender] = useState(false)
+    
     let [dateListWithTodos, setDateListWithTodos] = useState<Date[]>([])
     let todayDate = new Date()
 
@@ -75,12 +75,10 @@ const Calender: React.FC<CalenderProps> = ({selectedDate, setSelectedDate, setUp
     const handlePreviousMonth = ()=>{
         logWithDebug('In handlePreviousMonth')
         setCalenderDate(subMonths(calenderDate, 1))
-        setUpdateCalender((previous) => !previous)
     }
     const handleNextMonth = ()=>{
         logWithDebug('In handleNextMonth function')
         setCalenderDate(addMonths(calenderDate, 1))
-        setUpdateCalender((previous) => !previous)
     }
 
     const showDataAsHTML = data.map( (week) => 
@@ -207,7 +205,7 @@ const Calender: React.FC<CalenderProps> = ({selectedDate, setSelectedDate, setUp
                 throw err
             })
         }
-    }, [updateCalender])
+    }, [])
 
     return (
         <div className={Style.container}>
