@@ -11,9 +11,10 @@ interface CalenderProps {
     selectedDate: Date
     setSelectedDate: Function
     setUpdateToDoList: Function
+    updateToDoList: boolean
 }
 
-const Calender: React.FC<CalenderProps> = ({selectedDate, setSelectedDate, setUpdateToDoList}) => {
+const Calender: React.FC<CalenderProps> = ({selectedDate, setSelectedDate, setUpdateToDoList, updateToDoList}) => {
 
     let [calenderDate, setCalenderDate] = useState(new Date())
     let data = takeMonth(calenderDate)()
@@ -205,7 +206,7 @@ const Calender: React.FC<CalenderProps> = ({selectedDate, setSelectedDate, setUp
                 throw err
             })
         }
-    }, [])
+    }, [updateToDoList])
 
     return (
         <div className={Style.container}>

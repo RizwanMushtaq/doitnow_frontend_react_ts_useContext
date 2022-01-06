@@ -27,6 +27,7 @@ const AppPage: React.FC<AppPageProps> = ({setAppState}) => {
                     <Calender 
                         selectedDate={selectedDate} 
                         setSelectedDate={setSelectedDate}
+                        updateToDoList={updateToDoList}
                         setUpdateToDoList={setUpdateToDoList}
                     />
                 </div>
