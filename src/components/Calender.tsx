@@ -11,14 +11,15 @@ interface CalenderProps {
     selectedDate: Date
     setSelectedDate: Function
     setUpdateToDoList: Function
+    updateCalender: boolean
 }
 
-const Calender: React.FC<CalenderProps> = ({selectedDate, setSelectedDate, setUpdateToDoList}) => {
+const Calender: React.FC<CalenderProps> = ({selectedDate, setSelectedDate, setUpdateToDoList, updateCalender}) => {
 
     let [calenderDate, setCalenderDate] = useState(new Date())
     let data = takeMonth(calenderDate)()
 
-    let [dateListWithTodos, setDateListWithTodos] = useState([])
+    let [dateListWithTodos, setDateListWithTodos] = useState<Date[]>([])
     let todayDate = new Date()
 
     const handleDaysDivClickevent = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -164,6 +165,10 @@ const Calender: React.FC<CalenderProps> = ({selectedDate, setSelectedDate, setUp
         })
     )
 
+    function onlyUnique(value: any, index: any, self: any) {
+        return self.indexOf(value) === index;
+    }
+
     useEffect( () => {
         let bearerToken = localStorage.getItem('BearerToken' || '')
         let userID = localStorage.getItem('userID')
@@ -183,12 +188,25 @@ const Calender: React.FC<CalenderProps> = ({selectedDate, setSelectedDate, setUp
             )
             .then( (res) => {
                 logWithDebug(res)
+
+                let datesArray: any = []
+                res.data.map( (item: any) => {
+                    datesArray.push(item.Date)
+                    return null
+                })
+                let unique = datesArray.filter(onlyUnique)
+                for(let i = 0; i < unique.length; i++){
+                    let dateArray = unique[i].split('.')
+                    let date = new Date(dateArray[2], dateArray[1]-1, dateArray[0])
+                    setDateListWithTodos(dateList => [...dateList, date])
+                }
+                logWithDebug(unique)
             })
             .catch( (err) => {
                 throw err
             })
         }
-    })
+    }, [updateCalender])
 
     return (
         <div className={Style.container}>
