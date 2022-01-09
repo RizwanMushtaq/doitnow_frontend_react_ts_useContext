@@ -88,6 +88,7 @@ const LoginPage: React.FC<LoginPageProps> = ({setAppState}) => {
     }
 
     return (
+        <>
         <div className={Style.container}>
             <div className={Style.titleContainer}>
                 <h1>Do It Now App</h1>
@@ -114,6 +115,7 @@ const LoginPage: React.FC<LoginPageProps> = ({setAppState}) => {
                 </div>
             </div>
         </div>
+        </>
     )
 }
 

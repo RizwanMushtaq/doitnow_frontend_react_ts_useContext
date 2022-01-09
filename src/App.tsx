@@ -1,4 +1,4 @@
-import React, {ReactElement, useState} from 'react';
+import React, {useState, ReactElement} from 'react';
 import './App.css';
 
 import LoginPage from './pages/login/LoginPage'
@@ -19,7 +19,7 @@ const App: React.FC = () => {
   }
 
   return (
-    <div className="App">
+    <div className='app'>
       {RenderComponent}
     </div>
   )
@@ -27,3 +27,4 @@ const App: React.FC = () => {
 }
 
 export default App
+
