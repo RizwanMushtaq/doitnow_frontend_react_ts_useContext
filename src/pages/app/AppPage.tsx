@@ -7,20 +7,18 @@ import ToDoList from '../../components/ToDoList'
 import Footer from '../../components/Footer'
 import AddToDoItemDialog from '../../components/AddToDoItemDialog'
 
-interface AppPageProps {
-    setAppState: (value: string | ((prevVar: string) => string)) => void;
-}
 
-const AppPage: React.FC<AppPageProps> = ({setAppState}) => {
+const AppPage: React.FC = () => {
 
     let [selectedDate, setSelectedDate] = useState(new Date())
     let [updateToDoList, setUpdateToDoList] = useState(false)
     let [showAddToDoItemDialog, setShowAddToDoItemDialog] = useState(false)
 
+
     return (
         <div className={Style.container}>
             <div className={Style.header}>
-                <Header setAppState={setAppState}/>
+                <Header />
             </div>
             <div className={Style.body}>
                 <div className={Style.calender}>

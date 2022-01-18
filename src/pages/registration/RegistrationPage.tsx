@@ -3,21 +3,19 @@ import Style from './RegistrationPage.module.scss'
 import { logWithDebug } from '../../utils/logHandling'
 import {apiEndPoints} from '../../config/apiEndPoints'
 import axios from 'axios'
+import {useNavigate} from 'react-router-dom'
 
 import UserLogo from './../../assets/images/Benutzer.svg'
 import PasswordLogo from './../../assets/images/Passwortschloss.svg'
 import MailLogo from './../../assets/images/Mail.svg'
 
-interface RegistrationPageProps {
-    setAppState: (value: string | ((prevVar: string) => string)) => void;
-}
 interface RegistrationFormEnteredData {
     enteredUsername: string,
     enteredEmail: string,
     enteredPassword: string
 }
 
-const RegistrationPage: React.FC<RegistrationPageProps> = ({setAppState}) => {
+const RegistrationPage: React.FC = () => {
 
     logWithDebug('In RegistrationPage Component')
 
@@ -27,6 +25,8 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({setAppState}) => {
     const emailInputContainerRef = useRef<HTMLDivElement>(null)
     const passwordInputRef = useRef<HTMLInputElement>(null)
     const passwordInputContainerRef = useRef<HTMLDivElement>(null)
+
+    const navigate = useNavigate()
 
     const handleRegistrationRequest = () => {
         try {
@@ -104,7 +104,7 @@ const RegistrationPage: React.FC<RegistrationPageProps> = ({setAppState}) => {
     }
 
     const handleBackToLoginRequest = () => {
-        setAppState('LoginPage')
+        navigate('/login')
     }
 
     return (

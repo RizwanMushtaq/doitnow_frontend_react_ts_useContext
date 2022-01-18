@@ -1,16 +1,14 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import Style from './Header.module.scss'
+import { validUserContext } from '../context/ValidUserContext'
 
-interface HeaderProps {
-    setAppState: (value: string | ((prevVar: string) => string)) => void;
-}
+const Header:React.FC = () => {
 
-const Header:React.FC<HeaderProps> = ({setAppState}) => {
-
+    const validUser_Context = useContext(validUserContext)
     const username = localStorage.getItem('userName')
 
     const logoutHandler = () => {
-        setAppState('LoginPage')
+        validUser_Context.setIsLoggedIn(false)
     }
 
     return (

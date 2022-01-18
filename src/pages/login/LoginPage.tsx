@@ -1,17 +1,16 @@
-import React, {useRef} from 'react'
+import React, {useRef, useContext} from 'react'
 import Style from "./LoginPage.module.scss"
 import { logWithDebug } from '../../utils/logHandling'
+import { validUserContext } from '../../context/ValidUserContext'
+import { useNavigate} from 'react-router-dom'
 
 import { EnteredDataLoginPage, verifyUser } from '../../auth/userAuth'
 
 import UserLogo from './../../assets/images/Benutzer.svg'
 import PasswordLogo from './../../assets/images/Passwortschloss.svg'
 
-interface LoginPageProps {
-    setAppState: (value: string | ((prevVar: string) => string)) => void;
-}
 
-const LoginPage: React.FC<LoginPageProps> = ({setAppState}) => {
+const LoginPage: React.FC = () => {
 
     logWithDebug('In LoginPage Component')
 
@@ -20,6 +19,9 @@ const LoginPage: React.FC<LoginPageProps> = ({setAppState}) => {
     const passwordInputRef = useRef<HTMLInputElement>(null)
     const passwordInputContainerRef = useRef<HTMLDivElement>(null)
 
+    
+    const validUser_Context = useContext(validUserContext)
+    const navigate = useNavigate()
     
     const handleLoginRequest = () => {
             isInputEmpty()
@@ -65,7 +67,9 @@ const LoginPage: React.FC<LoginPageProps> = ({setAppState}) => {
         localStorage.setItem("userName", response.data.userName)
         localStorage.setItem("userID", response.data.userID)
         localStorage.setItem("userEMail", response.data.userEMail)
-        setAppState('AppPage')
+        
+        validUser_Context.setIsLoggedIn(true)
+        navigate('/app')
     }
     const handleFailedLogin = (error: any) => {
         if(error.response) {
@@ -84,7 +88,7 @@ const LoginPage: React.FC<LoginPageProps> = ({setAppState}) => {
 
     
     const handleRegisterRequest = () => {
-        setAppState('RegistrationPage')
+        navigate('/registration')
     }
 
     return (
