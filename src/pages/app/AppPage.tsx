@@ -7,13 +7,11 @@ import ToDoList from '../../components/ToDoList'
 import Footer from '../../components/Footer'
 import AddToDoItemDialog from '../../components/AddToDoItemDialog'
 
-
 const AppPage: React.FC = () => {
 
     let [selectedDate, setSelectedDate] = useState(new Date())
     let [updateToDoList, setUpdateToDoList] = useState(false)
     let [showAddToDoItemDialog, setShowAddToDoItemDialog] = useState(false)
-
 
     return (
         <div className={Style.container}>

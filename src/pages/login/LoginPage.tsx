@@ -9,7 +9,6 @@ import { EnteredDataLoginPage, verifyUser } from '../../auth/userAuth'
 import UserLogo from './../../assets/images/Benutzer.svg'
 import PasswordLogo from './../../assets/images/Passwortschloss.svg'
 
-
 const LoginPage: React.FC = () => {
 
     logWithDebug('In LoginPage Component')
@@ -19,7 +18,6 @@ const LoginPage: React.FC = () => {
     const passwordInputRef = useRef<HTMLInputElement>(null)
     const passwordInputContainerRef = useRef<HTMLDivElement>(null)
 
-    
     const validUser_Context = useContext(validUserContext)
     const navigate = useNavigate()
     
@@ -86,7 +84,6 @@ const LoginPage: React.FC = () => {
         }
     }
 
-    
     const handleRegisterRequest = () => {
         navigate('/registration')
     }
